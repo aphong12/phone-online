@@ -2,22 +2,25 @@
 
 namespace App\Services;
 
+
+use App\Repositories\CategoryRepository;
+
 class CategoryService
 {
-   private $model;
+   private $categoryRepository;
 
-   public function __construct($model)
+   public function __construct(CategoryRepository $categoryRepository)
    {
-       $this->model = $model;
+       $this->categoryRepository = $categoryRepository;
    }
 
-    public function getById($id)
+    public function getAllCategories($page)
     {
-       return $this->model->find($id);
+       return $this->categoryRepository->getCategories($page);
     }
 
-    public function create($attribute = [])
+    public function getParentCategories()
     {
-       return $this->model->create($attribute);
+        return $this->categoryRepository->getParentCategories();
     }
 }

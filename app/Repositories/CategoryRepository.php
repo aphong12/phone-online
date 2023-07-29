@@ -19,4 +19,8 @@ class CategoryRepository extends BaseRepository
         return $this->model->with(['parentCategory'])->paginate(10, '*','p',$page);
      }
 
+    public function getParentCategories()
+    {
+       return $this->model->where('parent_id', 0)->get();
+    }
 }
